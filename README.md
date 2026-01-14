@@ -122,7 +122,7 @@ Los tests cubren:
 
 - **Lenguaje**: Python  
 - **Framework**: FastAPI  
-- **Base de datos**: SQL  
+- **Base de datos**: MongoDB o Archivos Json  
 - **Arquitectura**: MVC  
 - **Testing**: pytest  
 - **Contenedores**: Docker y Docker Compose  
