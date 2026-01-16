@@ -113,16 +113,20 @@ Los tests garantizan:
 
 #### CREATE
 - Crear película con datos válidos.
+  - Ingresar atributos: Título, Director, Género, Descripción, Estreno, Duración.
 - Error al crear película con datos inválidos.
+  - Título vacío, duración negativa, años anteriores a 1888 y años superiores al año actual o cualquier campo vacío.
 - Error al crear película sin permisos de administrador. (opcional)
+Nota: En caso erroneo lanzar código 400 (El servidor web no pudo procesar una solicitud hecha por el navegador o cliente porque la petición estaba mal formada, era inválida o contenía errores de sintaxis)  
 
 #### READ
 - Listar todas las películas.
 - Obtener película por ID existente.
 - Error al obtener película inexistente.
+  - Petición de un ID inexsistente o ID con formato incorrecto. (Lanzar error 400.)
 
 #### UPDATE
-- Actualizar película con permisos de administrador.
+- Actualizar película con permisos de administrador. (Opcional)
 - Error al actualizar película inexistente.
 - Error al actualizar sin permisos.
 
@@ -158,6 +162,7 @@ Los tests garantizan:
 ### ✏️ Tests de propuestas de edición
 
 - Crear propuesta de edición válida.
+  - Error al crear una popuesta para película inexistente.
 - Listar propuestas pendientes (admin). (opcional)
 - Aprobar propuesta de edición.
 - Rechazar propuesta de edición.
