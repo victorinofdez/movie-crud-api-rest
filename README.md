@@ -129,17 +129,19 @@ Los tests garantizan:
 #### DELETE
 - Eliminar película con permisos de administrador. (opcional)
 - Error al eliminar película inexistente.
-- - Error al eliminar película existente.
+- Error al eliminar película existente.
 - Error al eliminar sin permisos. (opcional)
 
 
-Operaciónes	  Endpoint	            Qué testear
-
-CREATE	      POST /movies	        Crear película válida / inválida
-READ	        GET /movies	          Listar películas
-READ	        GET /movies/{id}	    Película existente / no existente
-UPDATE	      PUT /movies/{id}	    Actualizar existente / error
-DELETE	      DELETE /movies/{id}	  Eliminar existente / no existente
+```
+| Operación | Endpoint            | Qué testear                         |
+|-----------|---------------------|-------------------------------------|
+| CREATE    | POST /movies        | Crear película válida / inválida    |
+| READ      | GET /movies         | Listar películas                    |
+| READ      | GET /movies/{id}    | Película existente / no existente   |
+| UPDATE    | PUT /movies/{id}    | Actualizar existente / error        |
+| DELETE    | DELETE /movies/{id} | Eliminar existente / no existente   |
+```
 
 ---
 
