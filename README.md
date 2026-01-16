@@ -153,6 +153,7 @@ Nota: En caso erroneo lanzar código 400 (El servidor web no pudo procesar una s
 
 - Añadir película a favoritos.
 - Eliminar película de favoritos.
+  - Error al eliminar película que no está en favoritos.
 - Listar favoritos del usuario autenticado. (opcional)
 - Error al añadir película inexistente.
 - Error al gestionar favoritos sin autenticación. (opcional)
