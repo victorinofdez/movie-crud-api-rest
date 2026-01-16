@@ -208,7 +208,7 @@ La aplicación está preparada para ejecutarse en contenedores Docker, permitien
 ## 📆 Plan de desarrollo
 
 1. **Semana 1**  
-   Diseño del dominio, entidades, estructura MVC y configuración base.
+   Estructura de proyecto, Diseño del dominio, entidades, estructura MVC y configuración base.
 
 2. **Semana 2**  
    Implementación del CRUD de películas y permisos por rol.
