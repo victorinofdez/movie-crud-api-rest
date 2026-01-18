@@ -1,232 +1,238 @@
-# 🎬 Pitufin Movie CRUD API
+          Pitufin Movie – Proyecto de testing y gestión de películas
 
-## 📌 Descripción del proyecto
+## Descripción del proyecto
 
-**Pitufin Movie CRUD API** es una aplicación backend desarrollada con **Python y FastAPI** que permite la gestión de un catálogo de películas de cine mediante una **API REST**.  
-El sistema implementa operaciones CRUD, un sistema de autenticación y autorización basado en roles (opcional), y funcionalidades específicas para usuarios finales, como la gestión de favoritos y la propuesta de ediciones.
+**Pitufin Movie** es un proyecto backend hecho con **Python y FastAPI** cuyo objetivo principal es **practicar testing backend** a través de un sistema sencillo de **gestión de películas** y **usuarios con distintos roles**.
 
-El proyecto se desarrolla siguiendo una **arquitectura MVC**, con persistencia en una base de datos no relacional y un enfoque de **testing desde el inicio**.
+La idea del proyecto no es centrarse en construir una API muy compleja, sino en comprobar que el sistema funciona correctamente mediante pruebas. Se pone especial atención en validar reglas de negocio, datos de entrada, permisos de usuario y los distintos flujos que puede seguir alguien al usar la aplicación.
 
----
+Desde el principio, el desarrollo se plantea con una mentalidad de testing, escribiendo pruebas antes o al mismo tiempo que la lógica.
 
-## 🎯 Objetivos del proyecto
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- Desarrollar una API REST funcional y escalable.
-- Gestionar un catálogo de películas mediante operaciones CRUD.
-- Implementar un sistema de autenticación con distintos roles de usuario. (opcional)
-- Aplicar reglas de negocio y control de permisos.
-- Persistir la información en una base de datos. (opcional)
-- Utilizar Docker para la ejecución del entorno. (opcional)
-- Aplicar testing desde las primeras fases del desarrollo.
+## Objetivos del proyecto
 
----
+* Practicar testing backend de forma constante.
+* Gestionar un catálogo de películas usando operaciones CRUD.
+* Simular distintos tipos de usuarios y permisos.
+* Validar reglas de negocio y errores comunes mediante tests.
+* Aprender a estructurar un proyecto backend pensando en que sea fácil de testear.
+* Usar persistencia simple para facilitar las pruebas (opcional).
+* Ejecutar el proyecto en un entorno controlado con Docker (opcional).
 
-## 🧱 Arquitectura
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-El proyecto sigue el patrón **Modelo–Vista–Controlador (MVC)**, adaptado al entorno de FastAPI:
+## Arquitectura del proyecto
 
-- **Model**  
-  Representa las entidades del dominio y la persistencia de datos mediante modelos y esquemas de validación.
+El proyecto sigue una arquitectura tipo **MVC**, adaptada a FastAPI, pensada para que el código sea fácil de mantener y de probar:
 
-- **View**  
-  Corresponde a los endpoints de la API REST que gestionan las peticiones HTTP y devuelven respuestas en formato JSON.
+* **Model**
+  Aquí se definen las entidades del sistema (películas, usuarios, favoritos, propuestas) y las validaciones de datos.
 
-- **Controller**  
-  Implementa la lógica de negocio y las reglas del sistema a través de servicios desacoplados de la capa de presentación.
+* **View**
+  Son los endpoints que reciben las peticiones y devuelven respuestas. Su comportamiento se comprueba directamente con tests.
 
-Esta separación facilita la mantenibilidad, la escalabilidad y el testing del sistema.
+* **Controller / Services**
+  Contienen la lógica de negocio: creación y gestión de películas, control de permisos, favoritos y propuestas de edición.
 
----
+Separar estas capas ayuda a que los tests sean más claros y a que los cambios no rompan todo el proyecto.
 
-## 👥 Tipos de usuarios (opcional)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 🔑 Administrador (Admin / Superusuario)
+## Tipos de usuarios
 
-**Permisos:**
-- Crear, editar y eliminar películas.
-- Gestionar todo el catálogo.
-- Aprobar o rechazar propuestas de edición.
-- Acceder a toda la información del sistema.
+### Administrador
 
-### 👤 Usuario estándar (User)
+Este rol está más enfocado a la gestión del sistema. Sirve para testear:
 
-**Permisos:**
-- Consultar el catálogo de películas.
-- Proponer ediciones.
-- Gestionar una lista de películas favoritas.
-- Acceder únicamente a su información personal.
+* Creación, edición y eliminación de películas.
+* Control completo del catálogo.
+* Revisión y decisión sobre propuestas de edición.
+* Acceso a toda la información.
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## ⚙️ Funcionalidades principales
+### Usuario estándar
 
-### 🎞️ Gestión de películas (CRUD)
+Este rol representa a un usuario normal de la aplicación y permite testear:
 
-- Crear nuevas películas.
-- Listar y consultar películas.
-- Editar información de películas existentes.
-- Eliminar películas (solo administradores).
+* Consulta del catálogo de películas.
+* Gestión de una lista de favoritos.
+* Propuesta de cambios sobre películas existentes.
+* Acceso solo a su propia información.
 
-### ⭐ Gestión de favoritos
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- Añadir películas a favoritos.
-- Eliminar películas de favoritos.
-- Consultar la lista de favoritos del usuario autenticado.
+## Funcionalidades principales a testear
 
-### ✏️ Propuestas de edición
+### Gestión de películas
 
-- Proponer cambios en películas existentes.
-- Revisión de propuestas por el administrador.
-- Aprobación o rechazo de propuestas.
+* Crear películas con datos correctos.
+* Rechazar películas con datos inválidos.
+* Consultar películas existentes.
+* Actualizar información de películas.
+* Eliminar películas según los permisos del usuario.
 
-### 🔐 Autenticación y autorización (Opcional)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- Registro de usuarios.
-- Inicio de sesión.
-- Autenticación basada en tokens.
-- Control de acceso por roles.
+### Gestión de favoritos
 
-### 💾 Persistencia de datos (Opcional)
-
-- Base de datos (MongoDB o archivos JSON).
-- Persistencia de usuarios, películas, favoritos y propuestas.
+* Añadir películas a favoritos.
+* Eliminar películas de favoritos.
+* Evitar que se repitan favoritos.
+* Controlar errores cuando la película no existe o el usuario no tiene permisos.
 
 ---
 
-## 🧪 Testing desde el inicio
+### Propuestas de edición
 
-El proyecto sigue un enfoque de **desarrollo orientado a pruebas (TDD)** utilizando **pytest** y `TestClient` de FastAPI.
+* Crear propuestas de edición sobre películas existentes.
+* Evitar propuestas sobre películas que no existen.
+* Aprobar o rechazar propuestas según el rol del usuario.
+* Validar que solo los usuarios autorizados puedan tomar decisiones.
 
-Antes de implementar la lógica de cada funcionalidad, se definen tests que describen el comportamiento esperado del sistema, cubriendo tanto escenarios exitosos como errores.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Los tests garantizan:
-- Correcta aplicación de reglas de negocio.
-- Control de permisos según el rol del usuario. (opcional)
-- Validación de datos de entrada.
-- Respuestas HTTP correctas.
+### Autenticación y permisos (opcional)
 
----
+* Simular usuarios autenticados.
+* Comprobar accesos permitidos y denegados.
+* Verificar las diferencias entre administrador y usuario estándar.
 
-## 🧪 Tests a implementar
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 🎞️ Tests del CRUD de películas
+## Enfoque principal: testing
 
-#### CREATE
-- Crear película con datos válidos.
-  - Ingresar atributos: Título, Director, Género, Descripción, Estreno, Duración.
-- Error al crear película con datos inválidos.
-  - Título vacío, duración negativa, años anteriores a 1888 y años superiores al año actual o cualquier campo vacío.
-- Error al crear película sin permisos de administrador. (opcional)
-Nota: En caso erroneo lanzar código 400 (El servidor web no pudo procesar una solicitud hecha por el navegador o cliente porque la petición estaba mal formada, era inválida o contenía errores de sintaxis)  
+El proyecto sigue un enfoque **orientado a pruebas**, donde los tests definen cómo debería comportarse el sistema.
 
-#### READ
-- Listar todas las películas.
-- Obtener película por ID existente.
-- Error al obtener película inexistente.
-  - Petición de un ID inexsistente o ID con formato incorrecto. (Lanzar error 400.)
+Se prueban tanto los casos en los que todo funciona correctamente como los errores más comunes, por ejemplo datos mal introducidos o accesos sin permisos.
 
-#### UPDATE
-- Actualizar película con permisos de administrador. (Opcional)
-- Error al actualizar película inexistente.
-- Error al actualizar sin permisos.
+Para ello se utilizan:
 
-#### DELETE
-- Eliminar película con permisos de administrador. (opcional)
-- Error al eliminar película inexistente.
-- Error al eliminar película existente.
-- Error al eliminar sin permisos. (opcional)
+* **pytest**
+* **TestClient** de FastAPI
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Tests a implementar
+
+### Tests del CRUD de películas
+
+#### Crear película
+
+* Crear una película con datos válidos.
+* Error al crear una película con:
+
+  * Campos vacíos.
+  * Duración negativa.
+  * Año anterior a 1888 o superior al año actual.
+* Error por falta de permisos (opcional).
+
+En los casos de error se debe devolver un código **400 Bad Request**.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### Leer películas
+
+* Listar todas las películas.
+* Obtener una película por un ID válido.
+* Error al consultar una película con:
+
+  * ID inexistente.
+  * ID con formato incorrecto.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### Actualizar película
+
+* Actualizar una película existente.
+* Error al actualizar una película que no existe.
+* Error al actualizar sin permisos (opcional).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### Eliminar película
+
+* Eliminar una película existente.
+* Error al eliminar una película que no existe.
+* Error al eliminar sin permisos (opcional).
 
 ```
-| Operación | Endpoint            | Qué testear                         |
+| Operación | Endpoint            | Qué se testea                       |
 |-----------|---------------------|-------------------------------------|
-| CREATE    | POST /movies        | Crear película válida / inválida    |
-| READ      | GET /movies         | Listar películas                    |
-| READ      | GET /movies/{id}    | Película existente / no existente   |
-| UPDATE    | PUT /movies/{id}    | Actualizar existente / error        |
-| DELETE    | DELETE /movies/{id} | Eliminar existente / no existente   |
+| CREATE    | POST /movies        | Película válida / inválida          |
+| READ      | GET /movies         | Listado                             |
+| READ      | GET /movies/{id}    | Existente / no existente            |
+| UPDATE    | PUT /movies/{id}    | Actualización / error               |
+| DELETE    | DELETE /movies/{id} | Eliminación / error                 |
 ```
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### ⭐ Tests de favoritos
+### Tests de favoritos
 
-- Añadir película a favoritos.
-- Eliminar película de favoritos.
-  - Error al eliminar película que no está en favoritos.
-- Listar favoritos del usuario autenticado. (opcional)
-- Error al añadir película inexistente.
-- Error al gestionar favoritos sin autenticación. (opcional)
+* Añadir una película a favoritos.
+* Eliminar una película de favoritos.
+* Error al eliminar una película que no está en favoritos.
+* Error al añadir una película inexistente.
+* Error por falta de autenticación (opcional).
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### ✏️ Tests de propuestas de edición
+### Tests de propuestas de edición
 
-- Crear propuesta de edición válida.
-  - Error al crear una popuesta para película inexistente.
-- Listar propuestas pendientes (admin). (opcional)
-- Aprobar propuesta de edición.
-- Rechazar propuesta de edición.
-- Error al aprobar/rechazar sin permisos. (opcional)
+* Crear una propuesta válida.
+* Error al crear una propuesta sobre una película inexistente.
+* Aprobar una propuesta (admin).
+* Rechazar una propuesta (admin).
+* Error por falta de permisos (opcional).
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 🔐 Tests de autenticación y autorización (opcional)
+### Tests de validación
 
-- Registro de usuario válido. 
-- Inicio de sesión correcto.
-- Error en login con credenciales inválidas.
-- Acceso denegado a endpoints protegidos.
-- Validación de roles (admin vs user).
+* Falta de campos obligatorios.
+* Tipos de datos incorrectos.
+* Valores fuera de rango.
+* Formatos inválidos.
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 📐 Tests de validación
+## Tecnologías utilizadas
 
-- Campos obligatorios faltantes.
-- Tipos de datos incorrectos.
-- Valores fuera de rango.
-- Formato incorrecto de datos de entrada.
+* Python
+* FastAPI
+* pytest
+* Arquitectura MVC
+* MongoDB o archivos JSON (opcional)
+* Docker (opcional)
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 🛠️ Tecnologías utilizadas
+## Plan de desarrollo
 
-- **Lenguaje**: Python  
-- **Framework**: FastAPI  
-- **Base de datos**: MongoDB o archivos JSON  
-- **Arquitectura**: MVC  
-- **Testing**: pytest  
-- **Contenedores**: Docker y Docker Compose  
+**Semana 1**
+Estructura del proyecto, diseño del dominio y primeros tests.
 
----
+**Semana 2**
+Tests y desarrollo del CRUD de películas.
 
-## 📦 Despliegue con Docker
+**Semana 3**
+Gestión de favoritos y roles de usuario.
 
-La aplicación está preparada para ejecutarse en contenedores Docker, permitiendo:
+**Semana 4**
+Propuestas de edición, limpieza de código y documentación.
 
-- Aislar el entorno de desarrollo.
-- Simplificar la configuración.
-- Garantizar consistencia entre entornos.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
----
+## Estado del proyecto
 
-## 📆 Plan de desarrollo
+Proyecto en desarrollo, enfocado principalmente en aprender y practicar testing backend, validando reglas de negocio y control de permisos de forma clara y ordenada.
 
-1. **Semana 1**  
-   Estructura de proyecto, Diseño del dominio, entidades, estructura MVC y configuración base.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-2. **Semana 2**  
-   Implementación del CRUD de películas y permisos por rol.
+Si quieres, puedo adaptarlo aún más a:
 
-3. **Semana 3**  
-   Autenticación y gestión de favoritos.
-
-4. **Semana 4**  
-   Propuestas de edición, refactorización y documentación.
-
----
-
-## 🚧 Estado del proyecto
-
-📍 En desarrollo activo, siguiendo buenas prácticas de backend y testing.
+* Un trabajo de clase concreto
+* Un README más corto
+* O dejar el texto todavía más informal
