@@ -96,5 +96,5 @@ def search_by_field_contains(path, section, field, text):
 def main():
 
 
-if __name__ == "__main__":  
+ if __name__ == "__main__":  
     main()
