@@ -1,76 +1,134 @@
 import json
 
-DATA_FILE = "data/data.json"
+DATA_FILE = "persistencia/persistencia.py"
 
-def read_file():
-    with open(DATA_FILE, "r", encoding="utf-8") as file:
-        return json.load(file)
+# ---------- Operaciones con fichero ----------
+def read_file(DATA_FILE):
+    try:
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        write_file(DATA_FILE, {})
+        return {}
 
 
-def write_file(data):
-    with open(DATA_FILE, "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4)
+def write_file(DATA_FILE, data):
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
 
-def create(movie_id, titulo, anio, sinopsis, director):
-    data = read_file()
 
-    if str(movie_id) in data["movies"]:
-        print("La pelicula ya existe")
-        return
+# ---------- CRUD ----------
+def create(path, section, key, value):
+    data = read_file(path)
 
-    data["movies"][str(movie_id)] = {
-        "id": movie_id,
-        "titulo": titulo,
-        "anio": anio,
-        "sinopsis": sinopsis,
-        "director": director
-    }
+    if section not in data:
+        data[section] = {}
 
-    write_file(data)
-    print("Pelicula creada")
+    if str(key) in data[section]:
+        raise ValueError(f"Ya existe el id {key} en '{section}'")
 
-def get(movie_id):
-    data = read_file()
-    return data["movies"].get(str(movie_id), "pelicula no encontrada")
+    data[section][str(key)] = value
+    write_file(path, data)
+    return True
 
-def update(movie_id, titulo=None, anio=None, sinopsis=None, director=None):
-    data = read_file()
-    movie = data["movies"].get(str(movie_id))
 
-    if not movie:
-        print("pelicula no encontrada")
-        return
+def get(path, section, key):
+    data = read_file(path)
+    return data.get(section, {}).get(str(key))
 
-    if titulo:
-        movie["titulo"] = titulo
-    if anio:
-        movie["anio"] = anio
-    if sinopsis:
-        movie["sinopsis"] = sinopsis
-    if director:
-        movie[director] = director
 
-    write_file(data)
-    print("pelicula actualizado")
+def get_all(path, section):
+    data = read_file(path)
+    return data.get(section, {})
 
-def delete(movie_id):
-    data = read_file()
 
-    if str(movie_id) not in data["movies"]:
-        print("pelicula no encontrado")
-        return
+def update(path, section, key, value):
+    data = read_file(path)
 
-    del data["movies"][str(movie_id)]
-    write_file(data)
-    print("pelicula eliminado")
+    if section not in data or str(key) not in data[section]:
+        raise ValueError(f"No existe el id {key} en '{section}'")
 
-def get_all_movies():
-    data = read_file()
-    return data["movies"]
+    data[section][str(key)] = value
+    write_file(path, data)
+    return True
 
+
+def delete(path, section, key):
+    data = read_file(path)
+
+    if section not in data or str(key) not in data[section]:
+        raise ValueError(f"No existe el id {key} en '{section}'")
+
+    del data[section][str(key)]
+    write_file(path, data)
+    return True
+
+
+# ---------- Búsqueda simple por campo ----------
+def get_by_field(path, section, field, value):
+    data = read_file(path)
+    items = data.get(section, {})
+
+    for item in items.values():
+        if str(item.get(field, "")).lower() == str(value).lower():
+            return item
+
+    return None
+
+
+def search_by_field_contains(path, section, field, text):
+    data = read_file(path)
+    items = data.get(section, {})
+
+    text = str(text).lower()
+    result = []
+
+    for item in items.values():
+        value = str(item.get(field, "")).lower()
+        if text in value:
+            result.append(item)
+
+    return result
+
+
+# ---------- Pruebas rápidas ----------
 
 def main():
-    pass 
+    # Crear una nueva película
+    nueva_pelicula = {
+        "id": 51,
+        "titulo": "Nueva Película",
+        "anio": 2024,
+        "director": "Director Ejemplo",
+        "sinopsis": "Sinopsis de la nueva película."
+    }
+    create(DATA_FILE, "movies", nueva_pelicula["id"], nueva_pelicula)
 
-if __name__ == "__main__":
+    # Obtener una película por ID
+    pelicula = get(DATA_FILE, "movies", 1)
+    print("Película con ID 1:", pelicula)
+
+    # Actualizar una película
+    pelicula_actualizada = {
+        "id": 1,
+        "titulo": "El Padrino (Actualizado)",
+        "anio": 1972,
+        "director": "Francis Ford Coppola",
+        "sinopsis": "La familia Corleone y el poder del crimen organizado. (Actualizado)"
+    }
+    update(DATA_FILE, "movies", 1, pelicula_actualizada)
+
+    # Buscar película por título
+    pelicula_buscada = get_by_field(DATA_FILE, "movies", "titulo", "Inception")
+    print("Película buscada por título 'Inception':", pelicula_buscada)
+
+    # Búsqueda por sinopsis que contiene texto
+    peliculas_conteniendo = search_by_field_contains(DATA_FILE, "movies", "sinopsis", "crimen")
+    print("Películas con 'crimen' en la sinopsis:", peliculas_conteniendo)
+
+    # Eliminar una película
+    delete(DATA_FILE, "movies", 51)
+    print("Película con ID 51 eliminada.")
+
+if __name__ == "__main__":  
     main()
