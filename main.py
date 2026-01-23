@@ -94,41 +94,7 @@ def search_by_field_contains(path, section, field, text):
 # ---------- Pruebas rápidas ----------
 
 def main():
-    # Crear una nueva película
-    nueva_pelicula = {
-        "id": 51,
-        "titulo": "Nueva Película",
-        "anio": 2024,
-        "director": "Director Ejemplo",
-        "sinopsis": "Sinopsis de la nueva película."
-    }
-    create(DATA_FILE, "movies", nueva_pelicula["id"], nueva_pelicula)
 
-    # Obtener una película por ID
-    pelicula = get(DATA_FILE, "movies", 1)
-    print("Película con ID 1:", pelicula)
-
-    # Actualizar una película
-    pelicula_actualizada = {
-        "id": 1,
-        "titulo": "El Padrino (Actualizado)",
-        "anio": 1972,
-        "director": "Francis Ford Coppola",
-        "sinopsis": "La familia Corleone y el poder del crimen organizado. (Actualizado)"
-    }
-    update(DATA_FILE, "movies", 1, pelicula_actualizada)
-
-    # Buscar película por título
-    pelicula_buscada = get_by_field(DATA_FILE, "movies", "titulo", "Inception")
-    print("Película buscada por título 'Inception':", pelicula_buscada)
-
-    # Búsqueda por sinopsis que contiene texto
-    peliculas_conteniendo = search_by_field_contains(DATA_FILE, "movies", "sinopsis", "crimen")
-    print("Películas con 'crimen' en la sinopsis:", peliculas_conteniendo)
-
-    # Eliminar una película
-    delete(DATA_FILE, "movies", 51)
-    print("Película con ID 51 eliminada.")
 
 if __name__ == "__main__":  
     main()
