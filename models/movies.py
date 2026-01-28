@@ -10,8 +10,6 @@ class Movie:
         self.anio = anio
         self.sinopsis = sinopsis
         self.director = director
-
-
 '''
 
 from pydantic import BaseModel
