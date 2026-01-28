@@ -1,0 +1,365 @@
+{
+    "movies": {
+        "1": {
+            "id": 1,
+            "titulo": "El Padrino (Actualizado)",
+            "anio": 1972,
+            "director": "Francis Ford Coppola",
+            "sinopsis": "La familia Corleone y el poder del crimen organizado. (Actualizado)"
+        },
+        "2": {
+            "id": 2,
+            "titulo": "Forrest Gump",
+            "anio": 1994,
+            "director": "Robert Zemeckis",
+            "sinopsis": "Un hombre sencillo vive momentos clave de la historia."
+        },
+        "3": {
+            "id": 3,
+            "titulo": "Inception",
+            "anio": 2010,
+            "director": "Christopher Nolan",
+            "sinopsis": "Robar secretos dentro de los sueños."
+        },
+        "4": {
+            "id": 4,
+            "titulo": "Matrix",
+            "anio": 1999,
+            "director": "Lana Wachowski",
+            "sinopsis": "La realidad no es lo que parece."
+        },
+        "5": {
+            "id": 5,
+            "titulo": "Pulp Fiction",
+            "anio": 1994,
+            "director": "Quentin Tarantino",
+            "sinopsis": "Historias cruzadas del crimen en Los Ángeles."
+        },
+        "6": {
+            "id": 6,
+            "titulo": "El Caballero Oscuro",
+            "anio": 2008,
+            "director": "Christopher Nolan",
+            "sinopsis": "Batman enfrenta al Joker."
+        },
+        "7": {
+            "id": 7,
+            "titulo": "Fight Club",
+            "anio": 1999,
+            "director": "David Fincher",
+            "sinopsis": "Un club secreto con reglas peligrosas."
+        },
+        "8": {
+            "id": 8,
+            "titulo": "El Señor de los Anillos: La Comunidad del Anillo",
+            "anio": 2001,
+            "director": "Peter Jackson",
+            "sinopsis": "Un anillo que debe ser destruido."
+        },
+        "9": {
+            "id": 9,
+            "titulo": "Star Wars: Una Nueva Esperanza",
+            "anio": 1977,
+            "director": "George Lucas",
+            "sinopsis": "El inicio de la saga galáctica."
+        },
+        "10": {
+            "id": 10,
+            "titulo": "Gladiator",
+            "anio": 2000,
+            "director": "Ridley Scott",
+            "sinopsis": "Un general romano busca venganza."
+        },
+        "11": {
+            "id": 11,
+            "titulo": "Titanic",
+            "anio": 1997,
+            "director": "James Cameron",
+            "sinopsis": "Amor y tragedia en el mar."
+        },
+        "12": {
+            "id": 12,
+            "titulo": "Jurassic Park",
+            "anio": 1993,
+            "director": "Steven Spielberg",
+            "sinopsis": "Dinosaurios traídos de vuelta a la vida."
+        },
+        "13": {
+            "id": 13,
+            "titulo": "El Rey León",
+            "anio": 1994,
+            "director": "Roger Allers",
+            "sinopsis": "El ciclo de la vida en la sabana."
+        },
+        "14": {
+            "id": 14,
+            "titulo": "Terminator 2",
+            "anio": 1991,
+            "director": "James Cameron",
+            "sinopsis": "Un androide protege a un niño clave."
+        },
+        "15": {
+            "id": 15,
+            "titulo": "Alien",
+            "anio": 1979,
+            "director": "Ridley Scott",
+            "sinopsis": "Una criatura mortal en el espacio."
+        },
+        "16": {
+            "id": 16,
+            "titulo": "Volver al Futuro",
+            "anio": 1985,
+            "director": "Robert Zemeckis",
+            "sinopsis": "Viajes en el tiempo con un DeLorean."
+        },
+        "17": {
+            "id": 17,
+            "titulo": "Scarface",
+            "anio": 1983,
+            "director": "Brian De Palma",
+            "sinopsis": "El ascenso de un narcotraficante."
+        },
+        "18": {
+            "id": 18,
+            "titulo": "El Resplandor",
+            "anio": 1980,
+            "director": "Stanley Kubrick",
+            "sinopsis": "La locura en un hotel aislado."
+        },
+        "19": {
+            "id": 19,
+            "titulo": "Braveheart",
+            "anio": 1995,
+            "director": "Mel Gibson",
+            "sinopsis": "La lucha por la libertad de Escocia."
+        },
+        "20": {
+            "id": 20,
+            "titulo": "Salvar al Soldado Ryan",
+            "anio": 1998,
+            "director": "Steven Spielberg",
+            "sinopsis": "Una misión en la Segunda Guerra Mundial."
+        },
+        "21": {
+            "id": 21,
+            "titulo": "La Lista de Schindler",
+            "anio": 1993,
+            "director": "Steven Spielberg",
+            "sinopsis": "Salvar vidas durante el Holocausto."
+        },
+        "22": {
+            "id": 22,
+            "titulo": "El Club de los Poetas Muertos",
+            "anio": 1989,
+            "director": "Peter Weir",
+            "sinopsis": "Inspirar a pensar diferente."
+        },
+        "23": {
+            "id": 23,
+            "titulo": "Seven",
+            "anio": 1995,
+            "director": "David Fincher",
+            "sinopsis": "Crímenes basados en los pecados capitales."
+        },
+        "24": {
+            "id": 24,
+            "titulo": "El Silencio de los Corderos",
+            "anio": 1991,
+            "director": "Jonathan Demme",
+            "sinopsis": "Un asesino brillante y aterrador."
+        },
+        "25": {
+            "id": 25,
+            "titulo": "Rocky",
+            "anio": 1976,
+            "director": "John G. Avildsen",
+            "sinopsis": "Un boxeador contra todo pronóstico."
+        },
+        "26": {
+            "id": 26,
+            "titulo": "Casablanca",
+            "anio": 1942,
+            "director": "Michael Curtiz",
+            "sinopsis": "Amor en tiempos de guerra."
+        },
+        "27": {
+            "id": 27,
+            "titulo": "Amélie",
+            "anio": 2001,
+            "director": "Jean-Pierre Jeunet",
+            "sinopsis": "Pequeños actos que cambian vidas."
+        },
+        "28": {
+            "id": 28,
+            "titulo": "La Vida es Bella",
+            "anio": 1997,
+            "director": "Roberto Benigni",
+            "sinopsis": "Humor y esperanza en tiempos oscuros."
+        },
+        "29": {
+            "id": 29,
+            "titulo": "Toy Story",
+            "anio": 1995,
+            "director": "John Lasseter",
+            "sinopsis": "Los juguetes también tienen vida."
+        },
+        "30": {
+            "id": 30,
+            "titulo": "Shrek",
+            "anio": 2001,
+            "director": "Andrew Adamson",
+            "sinopsis": "Un ogro muy poco común."
+        },
+        "31": {
+            "id": 31,
+            "titulo": "Up",
+            "anio": 2009,
+            "director": "Pete Docter",
+            "sinopsis": "Una aventura elevada por globos."
+        },
+        "32": {
+            "id": 32,
+            "titulo": "Wall-E",
+            "anio": 2008,
+            "director": "Andrew Stanton",
+            "sinopsis": "Un robot salva la humanidad."
+        },
+        "33": {
+            "id": 33,
+            "titulo": "Coco",
+            "anio": 2017,
+            "director": "Lee Unkrich",
+            "sinopsis": "La música y la memoria familiar."
+        },
+        "34": {
+            "id": 34,
+            "titulo": "Mad Max: Fury Road",
+            "anio": 2015,
+            "director": "George Miller",
+            "sinopsis": "Persecuciones en el desierto."
+        },
+        "35": {
+            "id": 35,
+            "titulo": "Joker",
+            "anio": 2019,
+            "director": "Todd Phillips",
+            "sinopsis": "El origen de un villano."
+        },
+        "36": {
+            "id": 36,
+            "titulo": "Parasite",
+            "anio": 2019,
+            "director": "Bong Joon-ho",
+            "sinopsis": "Clases sociales en conflicto."
+        },
+        "37": {
+            "id": 37,
+            "titulo": "Whiplash",
+            "anio": 2014,
+            "director": "Damien Chazelle",
+            "sinopsis": "La obsesión por la perfección."
+        },
+        "38": {
+            "id": 38,
+            "titulo": "Interstellar",
+            "anio": 2014,
+            "director": "Christopher Nolan",
+            "sinopsis": "Viajes espaciales para salvar la humanidad."
+        },
+        "39": {
+            "id": 39,
+            "titulo": "El Gran Lebowski",
+            "anio": 1998,
+            "director": "Hermanos Coen",
+            "sinopsis": "Un caso absurdo y divertido."
+        },
+        "40": {
+            "id": 40,
+            "titulo": "Blade Runner",
+            "anio": 1982,
+            "director": "Ridley Scott",
+            "sinopsis": "Humanos y replicantes."
+        },
+        "41": {
+            "id": 41,
+            "titulo": "Her",
+            "anio": 2013,
+            "director": "Spike Jonze",
+            "sinopsis": "Amor entre humano y sistema operativo."
+        },
+        "42": {
+            "id": 42,
+            "titulo": "Oldboy",
+            "anio": 2003,
+            "director": "Park Chan-wook",
+            "sinopsis": "Venganza y misterio."
+        },
+        "43": {
+            "id": 43,
+            "titulo": "Trainspotting",
+            "anio": 1996,
+            "director": "Danny Boyle",
+            "sinopsis": "Adicciones y decisiones."
+        },
+        "44": {
+            "id": 44,
+            "titulo": "La Llegada",
+            "anio": 2016,
+            "director": "Denis Villeneuve",
+            "sinopsis": "Comunicación con extraterrestres."
+        },
+        "45": {
+            "id": 45,
+            "titulo": "El Gran Hotel Budapest",
+            "anio": 2014,
+            "director": "Wes Anderson",
+            "sinopsis": "Una comedia elegante y absurda."
+        },
+        "46": {
+            "id": 46,
+            "titulo": "Memento",
+            "anio": 2000,
+            "director": "Christopher Nolan",
+            "sinopsis": "Una historia contada al revés."
+        },
+        "47": {
+            "id": 47,
+            "titulo": "Django Unchained",
+            "anio": 2012,
+            "director": "Quentin Tarantino",
+            "sinopsis": "Venganza en el viejo oeste."
+        },
+        "48": {
+            "id": 48,
+            "titulo": "La Naranja Mecánica",
+            "anio": 1971,
+            "director": "Stanley Kubrick",
+            "sinopsis": "Violencia y control social."
+        },
+        "49": {
+            "id": 49,
+            "titulo": "El Exorcista",
+            "anio": 1973,
+            "director": "William Friedkin",
+            "sinopsis": "Una posesión demoníaca."
+        },
+        "50": {
+            "id": 50,
+            "titulo": "La Red Social",
+            "anio": 2010,
+            "director": "David Fincher",
+            "sinopsis": "El origen de Facebook."
+        }
+    },
+
+    "users": {
+        "1": {
+            "id": 1,
+            "nombre": "david",
+            "mail": "david@uoc.com",
+            "password": "cocacola",
+            "rol": "admin",
+            "favs": [1, 4, 38, 50]
+        }
+    }
+}

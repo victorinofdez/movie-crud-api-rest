@@ -1,9 +1,0 @@
-{
-    "movies": {
-        "1": {
-            "id": 1,
-            "titulo": "Matrix",
-            "anio": 1999
-        }
-    }
-}
