@@ -1,7 +1,7 @@
 import os
 import json
 import pytest
-import persistencia as p
+from persistencia import persistencia as p
 
 # ------------------------
 # Fixtures
@@ -10,7 +10,7 @@ import persistencia as p
 @pytest.fixture
 def tmp_json_file(tmp_path):
     """Archivo temporal para pruebas."""
-    file_path = tmp_path / "data.json"
+    file_path = tmp_path / "data_tmp.json"
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump({}, f)
     return str(file_path)
@@ -110,3 +110,5 @@ def test_read_file_crea_si_no_existe(tmp_path):
     assert data == {}
     assert os.path.exists(path)
 #----------------------------------------
+
+
