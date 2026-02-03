@@ -55,11 +55,13 @@ def remove_favorite_movie(user_id: int, movie_id: int):
 def get_favorite_movies(user_id: int):          # Endpoint para listar todas las películas favoritas del usuario GET porque solo estamos consultando información
     user = get_user_or_404(user_id)            
     favorites_ids = user.get(FAVORITES_KEY, []) 
+
     favorite_movies = []                        # Lista donde guardaremos las películas completas
 
     for movie_id in favorites_ids:              # Recorre cada ID de película favorita
         movie = get("movies", movie_id)       
-        if movie:                               # Si la película existe, la agrega a la lista
+        if movie:                               # Si la película existe, la agrega a la lista                            
+
             favorite_movies.append(movie)
 
-    return favorite_movies                      # Devuelve la lista de películas favoritas
+    return favorite_movies                      
