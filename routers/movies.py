@@ -30,9 +30,15 @@ def create_movie(movie: dict):
 
 #_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _
 
-# PUT /movies/{movie_id}
-# @router.put("/{movie_id}")
-# def update_movie(movie_id: int, movie: dict):
+@router.put("/{movie_id}")                # Este endpoint busca una película por ID, verifica que exista, actualiza sus datos y guarda los cambios.
+def update_movie(movie_id: int, new_data: dict): 
+    movie = get("movies", movie_id)
+    if movie is None:
+        raise HTTPException(404, "Película no encontrada")
+      
+    movie.update(new_data)
+    update("movies", movie_id, movie)
+    return movie
 
 #_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _
 
