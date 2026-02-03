@@ -3,44 +3,44 @@ from fastapi import APIRouter, HTTPException       # Se Importa APIRouter para c
 from repositories.base_reposiry import *
 
 router = APIRouter(prefix="/users", tags=["Users"]) # Crea el router para usuarios prefix="/users" significa que todas las rutas empezarán con /users
-                                                    # tags=["Users"] sirve para agruparlas en la documentación (Swagger)
-FAVORITES_KEY = "favoritas"                         # Constante que guarda la clave donde se guardan las películas favoritas
+                                                    
+FAVORITES_KEY = "favoritas"                        
 
 def get_user_or_404(user_id: int) -> dict:          # Función para buscar un usuario por ID Si no existe, devuelve un error 404
-    user = get("users", user_id)                    # Busca el usuario en la colección "users"
-    if not user:                                     # Si no existe el usuario, lanzamos un error HTTP 404
+    user = get("users", user_id)                    
+    if not user:                                     
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
-    return user                            # Si existe, lo devolvemos
+    return user                           
 
 def get_movie_or_404(movie_id: int) -> dict:        # Función para buscar una película por ID Si no existe, devuelve un error 404
-    movie = get("movies", movie_id)                 # Busca la película en la colección "movies"
-    if not movie:                                                               # Si no existe la película, lanzamos un error HTTP 404
+    movie = get("movies", movie_id)               
+    if not movie:                                                               
         raise HTTPException(status_code=404, detail="Película no encontrada")
-    return                                                                      # Si existe, la devolvemos
+    return                                                                     
 
 @router.post("/{user_id}/favorites/{movie_id}")     # Endpoint para agregar una película a favoritas POST porque el usuario esta creando/modificando información
 def add_favorite_movie(user_id: int, movie_id: int):
-    user = get_user_or_404(user_id)             # Verifica el usuario o lanzamos error si no existe    
-    get_movie_or_404(movie_id)                  # Verifica que la película exista
-    favorites = user.get(FAVORITES_KEY, [])     # Obtiene la lista de favoritas del usuarios Si no existe, usamos una lista vacía
-    if movie_id in favorites:                   # Verifica si la película ya está en favoritas
+    user = get_user_or_404(user_id)                 # Verifica el usuario o lanzamos error si no existe    
+    get_movie_or_404(movie_id)                  
+    favorites = user.get(FAVORITES_KEY, [])    
+    if movie_id in favorites:                  
         raise HTTPException(
             status_code=400,
             detail="La película ya está en favoritas"
         )
 
     favorites.append(movie_id)                          # Agrega la película a la lista de favoritas
-    user[FAVORITES_KEY] = favorites                     # Actualiza la lista de favoritas en el usuario
-    update("users", user_id, user)                      # Guarda los cambios del usuario
-    return {"message": "Película agregada a favoritas"} # Devuelve un mensaje de confirmacíon
+    user[FAVORITES_KEY] = favorites                    
+    update("users", user_id, user)                     
+    return {"message": "Película agregada a favoritas"} 
 
 @router.delete("/{user_id}/favorites/{movie_id}")       # Endpoint para eliminar una película de favoritas
-def remove_favorite_movie(user_id: int, movie_id: int): # DELETE porque estamos eliminando información
+def remove_favorite_movie(user_id: int, movie_id: int):
     
-    user = get_user_or_404(user_id)                     # Obtiene el usuario o lanzamos error si no existe
-    favorites = user.get(FAVORITES_KEY, [])             # Obtiene la lista de favoritas del usuario
-    if movie_id not in favorites:                       # Verifica si la película NO está en favoritas
+    user = get_user_or_404(user_id)                    
+    favorites = user.get(FAVORITES_KEY, [])            
+    if movie_id not in favorites:                       
         raise HTTPException(
             status_code=404,
             detail="La película no está en favoritas"
@@ -48,17 +48,17 @@ def remove_favorite_movie(user_id: int, movie_id: int): # DELETE porque estamos 
 
     favorites.remove(movie_id)                              # Quita la película de la lista
     user[FAVORITES_KEY] = favorites                         # Actualiza la lista de favoritas del usuario
-    update("users", user_id, user)                          # Guarda los cambios en el usuario
-    return {"message": "Película eliminada de favoritas"}   # Devuelves un mensaje de confirmacíon
+    update("users", user_id, user)                         
+    return {"message": "Película eliminada de favoritas"}  
 
 @router.get("/{user_id}/favorites")
 def get_favorite_movies(user_id: int):          # Endpoint para listar todas las películas favoritas del usuario GET porque solo estamos consultando información
-    user = get_user_or_404(user_id)             # Obtiene el usuario o lanzamos error si no existe
-    favorites_ids = user.get(FAVORITES_KEY, []) # Obtiene los IDs de las películas favoritas
+    user = get_user_or_404(user_id)            
+    favorites_ids = user.get(FAVORITES_KEY, []) 
     favorite_movies = []                        # Lista donde guardaremos las películas completas
 
     for movie_id in favorites_ids:              # Recorre cada ID de película favorita
-        movie = get("movies", movie_id)         # Busca la película por ID
+        movie = get("movies", movie_id)       
         if movie:                               # Si la película existe, la agrega a la lista
             favorite_movies.append(movie)
 
