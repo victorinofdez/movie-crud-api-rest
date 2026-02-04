@@ -1,6 +1,5 @@
-
 from fastapi import APIRouter, HTTPException       # Se Importa APIRouter para crear rutas y HTTPException para manejar errores HTTP
-from repositories.base_reposiry import *
+from repositories.base_reposiry import get, update
 
 router = APIRouter(prefix="/users", tags=["Users"]) # Crea el router para usuarios prefix="/users" significa que todas las rutas empezarán con /users
                                                     
@@ -17,7 +16,7 @@ def get_movie_or_404(movie_id: int) -> dict:        # Función para buscar una p
     movie = get("movies", movie_id)               
     if not movie:                                                               
         raise HTTPException(status_code=404, detail="Película no encontrada")
-    return                                                                     
+    return movie                                                                     
 
 @router.post("/{user_id}/favorites/{movie_id}")     # Endpoint para agregar una película a favoritas POST porque el usuario esta creando/modificando información
 def add_favorite_movie(user_id: int, movie_id: int):
@@ -40,15 +39,12 @@ def remove_favorite_movie(user_id: int, movie_id: int):
     
     user = get_user_or_404(user_id)                    
     favorites = user.get(FAVORITES_KEY, [])            
-    if movie_id not in favorites:                       
-        raise HTTPException(
-            status_code=404,
-            detail="La película no está en favoritas"
-        )
 
-    favorites.remove(movie_id)                              # Quita la película de la lista
-    user[FAVORITES_KEY] = favorites                         # Actualiza la lista de favoritas del usuario
-    update("users", user_id, user)                         
+    if movie_id in favorites:                       
+        favorites.remove(movie_id)                              # Quita la película de la lista
+        user[FAVORITES_KEY] = favorites                         # Actualiza la lista de favoritas del usuario
+        update("users", user_id, user)                         
+
     return {"message": "Película eliminada de favoritas"}  
 
 @router.get("/{user_id}/favorites")
