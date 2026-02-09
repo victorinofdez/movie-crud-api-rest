@@ -3,9 +3,8 @@ import json
 import pytest
 from persistencia import persistencia as p
 
-# ------------------------
-# Fixtures
-# ------------------------
+# Fixtures _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
 
 @pytest.fixture
 def tmp_json_file(tmp_path):
@@ -29,9 +28,7 @@ def sample_data(tmp_json_file):
     return tmp_json_file
 
 
-# ------------------------
-# Tests CRUD
-# ------------------------
+# Tests CRUD _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 def test_create_ok(sample_data):
     movie = {"id": 3, "titulo": "El Padrino", "anio": 1972}
@@ -76,9 +73,7 @@ def test_delete_no_existe_lanza(sample_data):
         p.delete(sample_data, "movies", 999)
 
 
-# ------------------------
-# Tests búsquedas
-# ------------------------
+# Tests búsquedas _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 def test_get_by_field_encuentra(sample_data):
     movie = p.get_by_field(sample_data, "movies", "titulo", "Matrix")
@@ -100,15 +95,15 @@ def test_search_by_field_contains_vacio(sample_data):
     assert results == []
 
 
-# ------------------------
-# Test creación automática de archivo si no existe
-# ------------------------
+# Test creación automática de archivo si no existe _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
 
 def test_read_file_crea_si_no_existe(tmp_path):
     path = tmp_path / "noexiste.json"
     data = p.read_file(str(path))
     assert data == {}
     assert os.path.exists(path)
-#----------------------------------------
+
+# _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
