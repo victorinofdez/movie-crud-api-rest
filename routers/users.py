@@ -67,10 +67,10 @@ def get_users():
     users = get_all("users")          
     return list(users.values())  
 
-@router.post("/")                         
-def create_user(users: dict):  # ← cambié el nombre a create_user para claridad
-    create("users", users)               
-    return {"message": "Usuario creado"}  # ← cambio de "mensaje" a "message"
+@router.post("/")
+def create_user(user: dict):
+    create("users", user["id"], user)
+    return {"message": "Usuario creado"}
 
 @router.put("/{user_id}")                
 def update_user(user_id: int, new_data: dict): 
@@ -83,5 +83,8 @@ def update_user(user_id: int, new_data: dict):
 
 @router.delete("/{user_id}")                   
 def delete_user(user_id: int):
-    delete("users", user_id)                  
-    return {"message": "Usuario eliminado"}  # ← cambio de "mensaje" a "message"
+    try:
+     delete("users", user_id)                  
+    except ValueError:
+        raise HTTPException(404, "No existe usuario con ese id")
+    return {"message": "Usuario eliminado"} 
