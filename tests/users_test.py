@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient               # Importa TestClient
 from routers.users import router                        # Importa el router
 
 
-# Se crea FastAPI Test _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+# Se crea FastAPI Test _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
 app = FastAPI()                                         # Crea una app FastAPI
@@ -54,7 +54,7 @@ def test_add_favorite_movie(monkeypatch):                     # Test para agrega
     assert response.json()["message"] == "Película agregada a favoritas"  # Verifica el mensaje
     assert 10 in users_test[1]["favoritas"]                   # Verifica que la película esté en favoritas
 
-# TEST: Usuario no existe _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+# TEST: Usuario no existe _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
 def test_add_favorite_user_not_found(monkeypatch):      # Test cuando el usuario no existe
@@ -89,7 +89,6 @@ def test_add_favorite_already_exists(monkeypatch):      # Test cuando la pelícu
     response = client.post("/users/1/favorites/10")     # Intentamos agregarla de nuevo
 
     assert response.status_code == 400                  # Verificamos el status 400
-
     assert response.json()["detail"] == "La película ya está en favoritas"  # Verificamos el mensaje
 
 # TEST: Eliminar película de favoritas _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
