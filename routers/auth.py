@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, requests
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
 from auth import authenticate_user, create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
@@ -25,3 +25,4 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
         "access_token": access_token,
         "token_type": "bearer"
     }
+
