@@ -356,7 +356,7 @@
             "id": 1,
             "nombre": "david",
             "mail": "david@uoc.com",
-            "password": "cocacola",
+            "password": "$2b$12$MxKMBe22ZA8T1Q/e6qgsnOoFCzYUzDRLQkb5SvG75EgO1nAczFeGi",
             "rol": "admin",
             "favoritas": [
                 1,
