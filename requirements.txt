@@ -3,4 +3,4 @@ pydantic
 fastapi
 uvicorn[standard]
 python-jose
-passlib[bcrypt]
+passlib[bcrypt==4.0.1]

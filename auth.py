@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from fastapi import Depends, HTTPException, status, requests
+from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from repositories.base_reposiry import get_by_field
 
@@ -53,3 +53,14 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         raise credentials_exception
 
     return user
+
+def require_role(required_role: str):
+    def role_checker(current_user = Depends(get_current_user)):
+        print("usuario actual", current_user)
+        if current_user.get("rol") != required_role:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Permisos insuficientes"
+            )
+        return current_user
+    return role_checker
