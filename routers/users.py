@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException       
 from repositories.base_reposiry import get, update, get_all, create, delete
-from auth import get_current_user
+from auth import *
 from fastapi import Depends
 
 router = APIRouter(prefix="/users", tags=["Users"]) 
@@ -70,7 +70,7 @@ def get_users():
     return list(users.values())  
 
 @router.post("/")
-def create_user(user: dict):
+def create_user(user: dict, current_user = Depends(require_role("admin"))):
     create("users", user["id"], user)
     return {"message": "Usuario creado"}
 

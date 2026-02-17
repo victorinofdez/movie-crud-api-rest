@@ -379,6 +379,34 @@
                 12,
                 30
             ]
+        },
+        "3": {
+            "id": 3,
+            "nombre": "pepi",
+            "mail": "pepi@uoc.com",
+            "password": "$2b$12$ycmR6f3OdS9EZYws2HeHZ.If6c3sOAYw7yBfMTe0Z45qGU4Xf7Oem",
+            "rol": "user",
+            "favoritas": [
+                6,
+                5,
+                28,
+                10,
+                48
+            ]
+        },
+        "4": {
+            "id": 4,
+            "nombre": "manolo",
+            "mail": "manolo@uoc.com",
+            "password": "$2b$12$ycmR6f3OdS9EZYws2HeHZ.If6c3sOAYw7yBfMTe0Z45qGU4Xf7Oem",
+            "rol": "user",
+            "favoritas": [
+                6,
+                5,
+                28,
+                10,
+                48
+            ]
         }
     }
 }
