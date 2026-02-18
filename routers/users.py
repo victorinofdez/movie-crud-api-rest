@@ -64,18 +64,13 @@ def get_favorite_movies(user_id: int):
 
 # ─────────────── CRUD Usuarios ─────────────── #
 
-@router.get("/")                          
-def get_users():
-    users = get_all("users")          
-    return list(users.values())  
-
 @router.post("/")
 def create_user(user: dict, current_user = Depends(require_role("admin"))):
     create("users", user["id"], user)
     return {"message": "Usuario creado"}
 
 @router.put("/{user_id}")                
-def update_user(user_id: int, new_data: dict): 
+def update_user(user_id: int, new_data: dict, current_user = Depends(require_role("admin"))): 
     user = get("users", user_id)
     if user is None:
         raise HTTPException(404, "Usuario no encontrado")
@@ -84,7 +79,7 @@ def update_user(user_id: int, new_data: dict):
     return user
 
 @router.delete("/{user_id}")                   
-def delete_user(user_id: int):
+def delete_user(user_id: int, current_user = Depends(require_role("admin"))):
     try:
      delete("users", user_id)                  
     except ValueError:
