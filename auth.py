@@ -53,3 +53,14 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         raise credentials_exception
 
     return user
+
+def require_role(required_role: str):
+    def role_checker(current_user = Depends(get_current_user)):
+        print("usuario actual", current_user)
+        if current_user.get("rol") != required_role:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Permisos insuficientes"
+            )
+        return current_user
+    return role_checker

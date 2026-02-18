@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException          
-from repositories.base_reposiry import *              
+from repositories.base_reposiry import *      
+from auth import *
                                                      
 router = APIRouter(prefix="/movies", tags=["Movies"]) 
 
@@ -35,6 +36,6 @@ def update_movie(movie_id: int, new_data: dict):
     return movie
 
 @router.delete("/{movie_id}") 
-def delete_movie(movie_id: int):
+def delete_movie(movie_id: int, current_user = Depends(require_role("admin"))):
     delete("movies", movie_id) 
     return {"mensaje": "Película eliminada"}
