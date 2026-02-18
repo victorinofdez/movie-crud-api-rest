@@ -13,15 +13,15 @@ if "token" not in st.session_state:
 if "username" not in st.session_state:
     st.session_state.username = None
 if "screen" not in st.session_state:
-    st.session_state.screen = "login"  # login, movies, create, view, edit, users
+    st.session_state.screen = "login"
 if "selected_movie" not in st.session_state:
     st.session_state.selected_movie = None
 
-# ---------------- NAVIGATION ----------------
+# ---------------- NAV ----------------
 def go_to(screen, movie=None):
     st.session_state.screen = screen
     st.session_state.selected_movie = movie
-    st.rerun()  # recarga la página al cambiar de pantalla
+    st.rerun()
 
 # ---------------- LOGIN ----------------
 def login_view():
