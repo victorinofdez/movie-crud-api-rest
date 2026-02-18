@@ -1,4 +1,6 @@
 pytest
 pydantic
 fastapi
-uvicorn
+uvicorn[standard]
+python-jose
+passlib[bcrypt==4.0.1]

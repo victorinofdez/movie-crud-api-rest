@@ -356,7 +356,7 @@
             "id": 1,
             "nombre": "david",
             "mail": "david@uoc.com",
-            "password": "cocacola",
+            "password": "$2b$12$ycmR6f3OdS9EZYws2HeHZ.If6c3sOAYw7yBfMTe0Z45qGU4Xf7Oem",
             "rol": "admin",
             "favoritas": [
                 1,
@@ -364,6 +364,48 @@
                 38,
                 50,
                 28
+            ]
+        },
+        "2": {
+            "id": 2,
+            "nombre": "juanillo",
+            "mail": "juanillo@uoc.com",
+            "password": "$2b$12$ycmR6f3OdS9EZYws2HeHZ.If6c3sOAYw7yBfMTe0Z45qGU4Xf7Oem",
+            "rol": "user",
+            "favoritas": [
+                1,
+                5,
+                24,
+                12,
+                30
+            ]
+        },
+        "3": {
+            "id": 3,
+            "nombre": "pepi",
+            "mail": "pepi@uoc.com",
+            "password": "$2b$12$ycmR6f3OdS9EZYws2HeHZ.If6c3sOAYw7yBfMTe0Z45qGU4Xf7Oem",
+            "rol": "user",
+            "favoritas": [
+                6,
+                5,
+                28,
+                10,
+                48
+            ]
+        },
+        "4": {
+            "id": 4,
+            "nombre": "manolo",
+            "mail": "manolo@uoc.com",
+            "password": "$2b$12$ycmR6f3OdS9EZYws2HeHZ.If6c3sOAYw7yBfMTe0Z45qGU4Xf7Oem",
+            "rol": "user",
+            "favoritas": [
+                6,
+                5,
+                28,
+                10,
+                48
             ]
         }
     }

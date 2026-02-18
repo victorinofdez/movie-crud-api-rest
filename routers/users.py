@@ -1,5 +1,7 @@
 from fastapi import APIRouter, HTTPException       
 from repositories.base_reposiry import get, update, get_all, create, delete
+from auth import *
+from fastapi import Depends
 
 router = APIRouter(prefix="/users", tags=["Users"]) 
                                                     
@@ -68,7 +70,7 @@ def get_users():
     return list(users.values())  
 
 @router.post("/")
-def create_user(user: dict):
+def create_user(user: dict, current_user = Depends(require_role("admin"))):
     create("users", user["id"], user)
     return {"message": "Usuario creado"}
 
@@ -88,3 +90,8 @@ def delete_user(user_id: int):
     except ValueError:
         raise HTTPException(404, "No existe usuario con ese id")
     return {"message": "Usuario eliminado"} 
+
+@router.get("/")
+def get_users(current_user: dict = Depends(get_current_user)):
+    users = get_all("users")
+    return list(users.values())
