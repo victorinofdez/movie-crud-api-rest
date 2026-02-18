@@ -22,8 +22,9 @@ def get_movies():
 
 @router.post("/")                       
 def create_movie(movie: dict):
-    create("movies", movie)               
+    create("movies", movie["id"], movie)               
     return {"mensaje": "Película creada"} 
+
 
 @router.put("/{movie_id}")               
 def update_movie(movie_id: int, new_data: dict): 
