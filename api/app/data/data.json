@@ -407,6 +407,20 @@
                 10,
                 48
             ]
+        },
+        "5": {
+            "id": 5,
+            "nombre": "jose",
+            "mail": "jose@uoc.com",
+            "password": "$2b$12$cSm2gO7ZWP4lTWu/pNiZ8eGpgFBYDTROB/.rzzrXcaGu//gqE7MRi",
+            "rol": "user",
+            "favoritas": [
+                4,
+                7,
+                18,
+                11,
+                45
+            ]
         }
     }
 }
