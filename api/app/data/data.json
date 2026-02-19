@@ -1,18 +1,11 @@
 {
     "movies": {
-        "1": {
-            "id": 1,
-            "titulo": "El Padrino (Actualizado)",
-            "anio": 1972,
-            "director": "Francis Ford Coppola",
-            "sinopsis": "La familia Corleone y el poder del crimen organizado. (Actualizado)"
-        },
         "2": {
             "id": 2,
             "titulo": "Forrest Gump",
             "anio": 1994,
             "director": "Robert Zemeckis",
-            "sinopsis": "Un hombre sencillo vive momentos clave de la historia."
+            "sinopsis": "Un hombre sencillo vive momentos clave de la historia. "
         },
         "3": {
             "id": 3,
@@ -349,6 +342,13 @@
             "anio": 2010,
             "director": "David Fincher",
             "sinopsis": "El origen de Facebook."
+        },
+        "1": {
+            "id": 1,
+            "titulo": "El Padrino",
+            "anio": 1972,
+            "director": "Francis Ford Coppola",
+            "sinopsis": "La película se sitúa en la Nueva York de mediados de los años 40. Vito Corleone es el respetado jefe de una familia criminal que se niega a entrar en el negocio del narcotráfico. Esta negativa provoca una guerra entre las familias mafiosas de la ciudad, llevando al atentado de Don Vito y forzando a su hijo menor, Michael, a asumir el control para salvar la dinastía.\neditado por vito"
         }
     },
     "users": {

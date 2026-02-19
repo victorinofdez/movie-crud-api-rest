@@ -87,6 +87,6 @@ def delete_user(user_id: int, current_user = Depends(require_role("admin"))):
     return {"message": "Usuario eliminado"} 
 
 @router.get("/")
-def get_users(current_user: dict = Depends(get_current_user)):
+def get_users(current_user = Depends(require_role("admin"))):
     users = get_all("users")
     return list(users.values())

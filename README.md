@@ -231,8 +231,15 @@ Proyecto en desarrollo, enfocado principalmente en aprender y practicar testing 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Si quieres, puedo adaptarlo aún más a:
+Como instalarlo tanto en api y front:
+- instalar el venv si no esta activado
+- activarlo
+- instalar el requirements
 
-* Un trabajo de clase concreto
-* Un README más corto
-* O dejar el texto todavía más informal
+para arrancar el front se hace con el comando
+streamlit run app.py
+
+para el backend
+uvicorn main:app --reload
+
+para que funcione tiene que estar los dos arrancados
